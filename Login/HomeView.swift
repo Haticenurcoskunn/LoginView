@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct HomeView: View {
+   
+   @StateObject private var vm = LoginViewmodel()
+    let didTap: () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello,You are now logged in")
+        Button{
+            didTap()
+        }label:{
+            Text("Log Out")
+        }
+        
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView{
+    }
 }

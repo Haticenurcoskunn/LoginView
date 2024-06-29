@@ -5,14 +5,50 @@
 //  Created by nur on 28.06.2024.
 //
 
-import SwiftUI
+import Foundation
 
-struct LoginViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+struct User :Equatable {
+    var name: String = ""
+    var password: String = ""
+    
+    mutating func clearForm(){
+        name = ""
+        password = ""
     }
 }
 
-#Preview {
-    LoginViewModel()
+
+
+final class LoginViewmodel : ObservableObject {
+   
+
+    enum CurrentState {
+        case loading
+        case logged
+        case notLogged
+    }
+    @Published var user : User = .init()
+    @Published var state : CurrentState = .notLogged
+    
+    
+    func login (){
+        guard !user.name.isEmpty && !user.password.isEmpty else {
+            return
+        }
+        
+        state = .loading
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.state = .logged
+        }
+        
+    }
+    
+    func logout(){
+        self.state = .notLogged
+        self.user.clearForm()
+    }
+    
 }
