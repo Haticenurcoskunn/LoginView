@@ -25,10 +25,18 @@ struct LoginView: View {
                     Text("Welcome")
                         .font(.system(size: 40, weight: .bold))
                         .foregroundColor(Color("grey"))
-
+                    
                     Spacer().frame(height:30)
                     TextField("Name", text: $user.name, prompt :Text("Plase Enter Name")
-                    ).overlay(
+                    )
+                    .padding(
+                        EdgeInsets(
+                            top: 10,
+                            leading: 15,
+                            bottom: 10,
+                            trailing: 0
+                        ))
+                        .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color("grey").opacity(0.4))
                     ).padding(EdgeInsets(
@@ -36,9 +44,19 @@ struct LoginView: View {
                         leading: 20,
                         bottom: 0,
                         trailing: 20
-                    )).font(.system(size: 19,weight: .medium))
+                    ))
+                    .font(.system(size: 19,weight: .medium))
                     SecureField("Password", text: $user.password,prompt : Text("Enter Password")
-                    ).overlay(
+                    ).padding(
+                        EdgeInsets(
+                            top: 10,
+                            leading: 15,
+                            bottom: 10,
+                            trailing: 0
+                        )
+                    )
+                    
+                    .overlay(
                         RoundedRectangle(cornerRadius:8)
                             .stroke(Color("grey").opacity(0.4))
                     ).padding(EdgeInsets(
@@ -51,10 +69,10 @@ struct LoginView: View {
                     Button{
                         didTap()
                     }label : {
-                        Text("Login")
-                            .font(.system(size: 24, weight: .semibold))
+                        Text("Sign In")
+                            .font(.system(size: 28, weight: .semibold))
                             .foregroundColor(Color("grey"))
-                            .frame(width:350,height: 45)
+                            .frame(width:350,height: 50)
                             .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
